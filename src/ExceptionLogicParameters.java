@@ -1,10 +1,11 @@
 
 public class ExceptionLogicParameters extends RuntimeException {
-	private boolean inputsRelated;
-	private int expected, found;
+	private boolean inputsRelated; // when true, indicates this parameters issue was for the inputs to some Logic structure
+	                                // (and not to the outputs)
+	private int expected, found; // How many were expected, and how many were found?
 	
 	/**
-	 * constructor that assigns to each field
+	 * Constructor that assigns to each field
 	 */
 	public ExceptionLogicParameters(boolean inputsRelated, int expected, int found) {
 		this.inputsRelated = inputsRelated;

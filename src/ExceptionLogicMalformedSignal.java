@@ -1,7 +1,7 @@
 
 public class ExceptionLogicMalformedSignal extends RuntimeException {
-	private char bad;
-	private String msg;
+	private char bad; // the offending character
+	private String msg; // the entire message
 	
 	/**
 	 * constructor that assigns to each field
