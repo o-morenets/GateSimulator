@@ -30,7 +30,7 @@ public class GateNot extends Gate {
         Signal newOut = getInputs().get(0).getSignal().invert();
         getOutput().setSignal(newOut);
 
-        return !currentOut.equals(newOut);
+        return currentOut != newOut;
     }
 
 }

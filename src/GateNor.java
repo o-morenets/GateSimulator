@@ -21,24 +21,23 @@ public class GateNor extends Gate {
 		Signal currentOut = getOutput().getSignal();
 		
 		for (Wire wire : getInputs()) {
-			if (wire.getSignal().equals(Signal.HI)) {
-				ans = ! currentOut.equals(Signal.LO);
+			if (wire.getSignal() == Signal.HI) {
+				ans = currentOut != Signal.LO;
 				getOutput().setSignal(Signal.LO);
 				return ans;
 			}
 		}
 		
 		for (Wire wire : getInputs()) {
-			if (wire.getSignal().equals(Signal.X)) {
-				ans = ! currentOut.equals(Signal.X);
+			if (wire.getSignal() == Signal.X) {
+				ans = currentOut != Signal.X;
 				getOutput().setSignal(Signal.X);
 				return ans;
 			}
 		}
-		
-		ans = ! currentOut.equals(Signal.HI);
+
 		getOutput().setSignal(Signal.HI);
-		return ans;
+		return ! currentOut.equals(Signal.HI);
 	}
 
 }

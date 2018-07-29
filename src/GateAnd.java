@@ -21,23 +21,23 @@ public class GateAnd extends Gate {
         Signal currentOut = getOutput().getSignal();
 
         for (Wire wire : getInputs()) {
-            if (wire.getSignal().equals(Signal.LO)) {
-                ans = !currentOut.equals(Signal.LO);
+            if (wire.getSignal() == Signal.LO) {
+                ans = currentOut != Signal.LO;
                 getOutput().setSignal(Signal.LO);
                 return ans;
             }
         }
 
         for (Wire wire : getInputs()) {
-            if (wire.getSignal().equals(Signal.X)) {
-                ans = !currentOut.equals(Signal.X);
+            if (wire.getSignal() == Signal.X) {
+                ans = currentOut != Signal.X;
                 getOutput().setSignal(Signal.X);
                 return ans;
             }
         }
 
         getOutput().setSignal(Signal.HI);
-        return !currentOut.equals(Signal.HI);
+        return currentOut != Signal.HI;
     }
 
 }
