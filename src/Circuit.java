@@ -46,12 +46,12 @@ public class Circuit implements Logic {
 			if (tokens[0].equalsIgnoreCase("IMPORT")) {
 				parseImportLine(sc.nextLine());
 				sc.nextLine(); // read empty line
-				line = sc.nextLine();
 			}
-		}
-		
-		// Call parseContactsLine, to find and add all Contact values to inputs and outputs.
-		parseContactsLine(line);
+        }
+
+        // Call parseContactsLine, to find and add all Contact values to inputs and outputs.
+        line = sc.nextLine();
+        parseContactsLine(line);
 		sc.nextLine(); // read empty line
 		
 		// Repeatedly call parseComponentLine, as necessary, to successfully create each requested gate or sub-circuit,
@@ -75,7 +75,8 @@ public class Circuit implements Logic {
 	}
 	
 	/**
-	 *  Parses the entire line from the file that definitely contains the IMPORT keyword and one or more circuit names after it (all separated by single spaces).
+	 *  Parses the entire line from the file that definitely contains the IMPORT keyword
+	 *  and one or more circuit names after it (all separated by single spaces).
 	 *  Updates the importables field.
 	 */
 	public void parseImportLine(String line) {
@@ -97,16 +98,14 @@ public class Circuit implements Logic {
 		String[] namesOut = names[1].trim().split(" ");
 		
 		for (String name : namesIn) {
-			String nameIn = name;
-			Wire wireIn = new Wire(nameIn);
+            Wire wireIn = new Wire(name);
 			innerWires.add(wireIn);
 			Contact contactIn = new Contact(wireIn, wireIn, true);
 			inputs.add(contactIn);
 		}
 		
 		for (String name : namesOut) {
-			String nameOut = name;
-			Wire wireOut = new Wire(nameOut);
+            Wire wireOut = new Wire(name);
 			innerWires.add(wireOut);
 			Contact contactOut = new Contact(wireOut, wireOut, false);
 			outputs.add(contactOut);
@@ -225,7 +224,7 @@ public class Circuit implements Logic {
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder(name + ":");
 		for (Contact contact : inputs) {
-			sb.append(contact.getIn().getName() + " ");
+			sb.append(contact.getIn().getName()).append(" ");
 		}
 		sb.append(" -> ");
 		for (Contact contact : outputs) {
