@@ -15,23 +15,23 @@ public class Contact implements Logic {
 	
 	@Override
 	public void feed(List<Signal> inSignals) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub. All Logic methods must be overridden. See the Logic definition for the expected behavior.
 	}
 
 	@Override
 	public void feed(String inSignals) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub All Logic methods must be overridden. See the Logic definition for the expected behavior.
 	}
 
 	@Override
 	public boolean propagate() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub All Logic methods must be overridden. See the Logic definition for the expected behavior.
 		return false;
 	}
 
 	@Override
 	public List<Signal> read() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub All Logic methods must be overridden. See the Logic definition for the expected behavior.
 		return null;
 	}
 
