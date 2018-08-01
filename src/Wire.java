@@ -24,7 +24,7 @@ public class Wire {
 	 */
 	@Override public boolean equals(Object other) {
 		Wire wire = (Wire) other;
-		return name.equals(wire.name) && signal.equals(wire.signal);
+		return name.equals(wire.name) && signal == wire.signal;
 	}
 
 	// getters/setters

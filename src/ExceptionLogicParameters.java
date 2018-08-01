@@ -14,7 +14,7 @@ public class ExceptionLogicParameters extends RuntimeException {
 	}
 
 	@Override public String toString() {
-		return "Wrong input. Expected: " + expected + ", found: " + found;
+        return "Wrong input. Expected: " + expected + ", found: " + found;
 	}
 
 	// getters/setters:

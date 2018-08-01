@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contact implements Logic {
@@ -15,24 +16,29 @@ public class Contact implements Logic {
 	
 	@Override
 	public void feed(List<Signal> inSignals) {
-		// TODO Auto-generated method stub. All Logic methods must be overridden. See the Logic definition for the expected behavior.
+        in.setSignal(inSignals.get(0));
 	}
 
 	@Override
 	public void feed(String inSignals) {
-		// TODO Auto-generated method stub All Logic methods must be overridden. See the Logic definition for the expected behavior.
+        feed(Signal.fromString(inSignals));
 	}
 
 	@Override
 	public boolean propagate() {
-		// TODO Auto-generated method stub All Logic methods must be overridden. See the Logic definition for the expected behavior.
-		return false;
+        Signal oldOut = out.getSignal();
+        Signal newOut = in.getSignal();
+        out.setSignal(newOut);
+        return oldOut != newOut;
 	}
 
 	@Override
 	public List<Signal> read() {
-		// TODO Auto-generated method stub All Logic methods must be overridden. See the Logic definition for the expected behavior.
-		return null;
+        return new ArrayList<Signal>() {
+            {
+                add(out.getSignal());
+            }
+        };
 	}
 
 	/**

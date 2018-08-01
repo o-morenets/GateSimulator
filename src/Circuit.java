@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -124,7 +125,8 @@ public class Circuit implements Logic {
 	}
 	
 	/**
-	 * Given complete lists of Wire references, completely replace the outer wires of all your Contacts (found in inputs and outputs).
+	 * Given complete lists of Wire references,
+	 * completely replace the outer wires of all your Contacts (found in inputs and outputs).
 	 */
 	public void hookUp(List<Wire> inWires, List<Wire> outWires) {
 		if (inputs.size() != inWires.size())
@@ -160,7 +162,7 @@ public class Circuit implements Logic {
 			throw new ExceptionLogicParameters(true, inputs.size(), inSignals.size());
 		
 		for (int i = 0; i < inputs.size(); i++) {
-			inputs.get(i).getIn().setSignal(inSignals.get(i));
+			inputs.get(i).feed(Arrays.asList(inSignals.get(i)));
 		}
 	}
 
@@ -173,16 +175,33 @@ public class Circuit implements Logic {
 	}
 
 	/**
-	 * Fully update all outputs of all components in this circuit so that all signal values are stable (will not change until the circuit's inputs are modified).
+	 * Fully update all outputs of all components in this circuit
+     * so that all signal values are stable (will not change until the circuit's inputs are modified).
 	 * Returns a boolean indicating if any wires' Signal values changed.
 	 */
 	@Override
 	public boolean propagate() {
-		boolean ans = false;
-		for (Logic component : components) {
-			ans = component.propagate();
-		}
-		return ans;
+        boolean ans = false;
+
+        for (Contact input : inputs) {
+            if (input.propagate()) {
+                ans = true;
+            }
+        }
+
+        for (Logic component : components) {
+            if (component.propagate()) {
+                ans = true;
+            }
+        }
+
+        for (Contact output : outputs) {
+            if (output.propagate()) {
+                ans = true;
+            }
+        }
+
+        return ans;
 	}
 
 	/**
